@@ -1,12 +1,12 @@
 /* ---- Design tokens ---- */
 :root {
-  --paper: #FAF7F1;
-  --paper-raised: #FFFFFF;
+  --paper: #f1e5cc;
+  --paper-raised: #fffbf9;
   --ink: #211F1C;
   --ink-soft: #5B564E;
-  --rule: #DCD5C7;
-  --accent: #2B3A55;
-  --accent-soft: #EDEFF4;
+  --rule: #c4bcad;
+  --accent: #263e6c;
+  --accent-soft: #b6c2e1;
   --good: #2F6B4F;
   --bad: #9B3B2C;
 
