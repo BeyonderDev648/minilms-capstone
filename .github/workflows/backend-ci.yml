@@ -1,0 +1,30 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [main]
+    paths: ['backend/**']
+  pull_request:
+    branches: [main]
+    paths: ['backend/**']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+      - run: find src -name "*.js" -print0 | xargs -0 -n1 node --check
+      - name: Smoke test - server boots and responds to /health
+        run: |
+          (DATABASE_URL=postgres://fake:fake@localhost:5432/fake JWT_SECRET=ci-test CORS_ORIGIN=http://localhost:5173 PORT=5050 node src/server.js &)
+          sleep 2
+          curl --fail http://localhost:5050/health
