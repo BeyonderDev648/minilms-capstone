@@ -168,7 +168,7 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
   cursor: pointer;
   transition: opacity 0.15s ease;
 }
-.btn:hover { opacity: 0.88; }
+.btn:hover { background: var(--accent); opacity: 0.88; }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .btn--ghost {
   background: transparent;
