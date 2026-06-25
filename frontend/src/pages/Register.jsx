@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserPlus } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export default function Register() {
@@ -78,7 +79,7 @@ export default function Register() {
         </div>
 
         <button className="btn" type="submit" disabled={loading} style={{ width: '100%' }}>
-          {loading ? 'Creating account…' : 'Create account'}
+          <UserPlus size={16} /> {loading ? 'Creating account…' : 'Create account'}
         </button>
       </form>
 

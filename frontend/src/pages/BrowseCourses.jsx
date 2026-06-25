@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Check, Plus } from 'lucide-react';
 import api from '../api/client';
 
 export default function BrowseCourses() {
@@ -39,8 +40,8 @@ export default function BrowseCourses() {
 
   return (
     <div className="container">
-      <h1>Browse courses</h1>
-      <p style={{ color: 'var(--ink-soft)' }}>Every course currently offered, across all teachers.</p>
+      <h2>Browse courses</h2>
+      <p style={{ color: 'var(--ink-soft)', marginTop: 10 }}>Every course currently offered, across all teachers.</p>
 
       {error && <div className="alert alert--error">{error}</div>}
       {loading && <p className="loading">Loading…</p>}
@@ -52,27 +53,29 @@ export default function BrowseCourses() {
       )}
 
       {!loading && courses.length > 0 && (
-        <div className="ledger">
+        <div className="catalog">
           {courses.map((course, i) => {
             const isEnrolled = enrolledIds.includes(course.id);
             return (
-              <div className="ledger__row" key={course.id}>
-                <div className="ledger__index">{String(i + 1).padStart(2, '0')}</div>
-                <div className="ledger__body">
-                  <h3 className="ledger__title">{course.title}</h3>
-                  <p className="ledger__meta">Taught by {course.teacher_name}</p>
-                  {course.description && <p className="ledger__desc">{course.description}</p>}
+              <div className="course-card" key={course.id}>
+                <div className="course-card__head">
+                  <span className="course-card__badge">{String(i + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h3 className="course-card__title">{course.title}</h3>
+                    <p className="course-card__meta">{course.teacher_name}</p>
+                  </div>
                 </div>
-                <div className="ledger__action">
+                {course.description && <p className="course-card__desc">{course.description}</p>}
+                <div className="course-card__foot">
                   {isEnrolled ? (
-                    <span className="tag">Enrolled</span>
+                    <span className="tag"><Check size={12} /> Enrolled</span>
                   ) : (
                     <button
                       className="btn btn--small"
                       onClick={() => handleEnroll(course.id)}
                       disabled={enrollingId === course.id}
                     >
-                      {enrollingId === course.id ? 'Enrolling…' : 'Enroll'}
+                      <Plus size={14} /> {enrollingId === course.id ? 'Enrolling…' : 'Enroll'}
                     </button>
                   )}
                 </div>

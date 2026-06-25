@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Plus } from 'lucide-react';
 import api from '../api/client';
 
 export default function CreateCourse() {
@@ -37,7 +38,7 @@ export default function CreateCourse() {
           <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
         <button className="btn" type="submit" disabled={loading}>
-          {loading ? 'Creating…' : 'Create course'}
+          <Plus size={16} /> {loading ? 'Creating…' : 'Create course'}
         </button>
       </form>
     </div>

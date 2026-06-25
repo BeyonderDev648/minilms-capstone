@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Upload } from 'lucide-react';
 import api from '../api/client';
 
 export default function UploadLesson() {
@@ -38,7 +39,7 @@ export default function UploadLesson() {
           <textarea id="content" rows={8} value={content} onChange={(e) => setContent(e.target.value)} />
         </div>
         <button className="btn" type="submit" disabled={loading}>
-          {loading ? 'Uploading…' : 'Upload lesson'}
+          <Upload size={16} /> {loading ? 'Uploading…' : 'Upload lesson'}
         </button>
       </form>
     </div>

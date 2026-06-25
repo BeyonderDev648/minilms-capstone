@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { LogIn } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
@@ -41,7 +42,7 @@ export default function Login() {
           <input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <button className="btn" type="submit" disabled={loading} style={{ width: '100%' }}>
-          {loading ? 'Logging in…' : 'Log in'}
+          <LogIn size={16} /> {loading ? 'Logging in…' : 'Log in'}
         </button>
       </form>
 

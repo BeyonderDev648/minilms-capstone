@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { BookOpen } from 'lucide-react';
 import api from '../api/client';
 
 export default function StudentCourseDetail() {
@@ -29,14 +30,18 @@ export default function StudentCourseDetail() {
       <h2 style={{ marginTop: 'var(--space-4)' }}>Lessons</h2>
       {lessons.length === 0 ? (
         <div className="empty-state">
+          <div className="empty-state__icon"><BookOpen size={24} /></div>
           <h3>No lessons have been uploaded yet.</h3>
           <p>Check back once your teacher adds course material.</p>
         </div>
       ) : (
-        lessons.map((lesson) => (
-          <div className="card" key={lesson.id}>
-            <h3 style={{ marginBottom: 6 }}>{lesson.title}</h3>
-            {lesson.content && <p style={{ margin: 0 }}>{lesson.content}</p>}
+        lessons.map((lesson, i) => (
+          <div className="card lesson-card" key={lesson.id}>
+            <span className="lesson-card__badge">{i + 1}</span>
+            <div>
+              <h3 style={{ marginBottom: 6 }}>{lesson.title}</h3>
+              {lesson.content && <p style={{ margin: 0 }}>{lesson.content}</p>}
+            </div>
           </div>
         ))
       )}

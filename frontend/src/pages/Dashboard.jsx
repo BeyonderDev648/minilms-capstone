@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
+import { Plus, BookOpen } from 'lucide-react';
 import api from '../api/client';
 import { useAuth } from '../context/AuthContext';
 
@@ -33,9 +34,9 @@ export default function Dashboard() {
   return (
     <div className="container">
       <div className="section-head">
-        <h1>{user.role === 'teacher' ? 'Your courses' : 'Your enrolled courses'}</h1>
+        <h2>{user.role === 'teacher' ? 'Your courses' : 'Your enrolled courses'}</h2>
         {user.role === 'teacher' && (
-          <Link to="/teacher/courses/new" className="btn">+ New course</Link>
+          <Link to="/teacher/courses/new" className="btn btn--small"><Plus size={15} /> New course</Link>
         )}
       </div>
 
@@ -44,7 +45,8 @@ export default function Dashboard() {
 
       {!loading && !error && courses.length === 0 && (
         <div className="empty-state">
-          <h3>{user.role === 'teacher' ? 'You haven\'t created any courses yet.' : 'You\'re not enrolled in anything yet.'}</h3>
+          <div className="empty-state__icon"><BookOpen size={24} /></div>
+          <h3>{user.role === 'teacher' ? "You haven't created any courses yet." : "You're not enrolled in anything yet."}</h3>
           {user.role === 'teacher' ? (
             <Link to="/teacher/courses/new" className="btn" style={{ marginTop: 'var(--space-2)' }}>Create your first course</Link>
           ) : (
@@ -54,15 +56,15 @@ export default function Dashboard() {
       )}
 
       {!loading && courses.length > 0 && (
-        <div className="ledger">
+        <div className="catalog">
           {courses.map((course, i) => (
-            <div className="ledger__row" key={course.id}>
-              <div className="ledger__index">{String(i + 1).padStart(2, '0')}</div>
-              <div className="ledger__body">
-                <h3 className="ledger__title">{course.title}</h3>
-                {course.description && <p className="ledger__desc">{course.description}</p>}
+            <div className="course-card" key={course.id}>
+              <div className="course-card__head">
+                <span className="course-card__badge">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="course-card__title">{course.title}</h3>
               </div>
-              <div className="ledger__action">
+              {course.description && <p className="course-card__desc">{course.description}</p>}
+              <div className="course-card__foot">
                 <Link
                   className="btn btn--small btn--ghost"
                   to={user.role === 'teacher' ? `/teacher/courses/${course.id}` : `/student/courses/${course.id}`}

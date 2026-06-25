@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Trash2 } from 'lucide-react';
 import api from '../api/client';
 import { useAuth } from '../context/AuthContext';
 
@@ -57,6 +58,7 @@ export default function AdminUsers() {
       {loading ? (
         <p className="loading">Loading…</p>
       ) : (
+        <div className="table-wrap">
         <table>
           <thead>
             <tr>
@@ -89,7 +91,7 @@ export default function AdminUsers() {
                       disabled={busyId === u.id}
                       onClick={() => handleDelete(u.id)}
                     >
-                      Delete
+                      Delete <Trash2 size={13} />
                     </button>
                   )}
                 </td>
@@ -97,6 +99,7 @@ export default function AdminUsers() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   );
