@@ -6,7 +6,7 @@
   --ink-soft: #6B6256;
   --rule: #E6DCC8;
 
-  --maroon: #7a2935;
+  --maroon: #7b1f41;
   --maroon-dark: #681926;
   --maroon-tint: #F6E6E5;
 
@@ -92,6 +92,7 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
   background: var(--cream-raised);
   border-bottom: 3px solid var(--maroon);
   box-shadow: var(--shadow-card);
+  position: sticky;
 }
 .topbar__inner {
   max-width: 960px;
@@ -230,7 +231,7 @@ button.linklike:hover { color: var(--maroon); }
 .btn:hover { background: var(--maroon-dark); color: var(--cream-raised); border-color: var(--maroon-dark); transform: translateY(-1px); box-shadow: var(--shadow-card-hover); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 .btn--ghost {
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   background: transparent;
   color: var(--navy);
   border-color: var(--navy);
