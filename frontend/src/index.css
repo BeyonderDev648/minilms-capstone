@@ -30,6 +30,7 @@
 
   --radius-sm: 6px;
   --radius-md: 10px;
+  --raduis-lg: 100px;
   --shadow-card: 0 1px 2px rgba(28, 26, 24, 0.04);
   --shadow-card-hover: 0 10px 24px -8px rgba(28, 26, 24, 0.18);
 }
@@ -59,7 +60,8 @@ h1 { font-size: 1.85rem; }
 h2 {
   font-size: 1.25rem;
   display: inline-block;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
+  color: var(--ink);
 }
 h3 { font-size: 1rem; font-weight: 600; font-family: var(--body); }
 
@@ -83,7 +85,7 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
   margin: 0 auto;
   padding: var(--space-4) var(--space-3);
 }
-.container--narrow { max-width: 440px; }
+.container--narrow { max-width: 460px; }
 
 /* ---- Top nav ---- */
 .topbar {
@@ -144,7 +146,7 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
   align-items: center;
   gap: 5px;
 }
-.nav-link:hover { color: var(--maroon); }
+.nav-link:hover { color: var(--maroon);  text-decoration: underline;}
 button.linklike {
   background: none;
   border: none;
@@ -228,6 +230,7 @@ button.linklike:hover { color: var(--maroon); }
 .btn:hover { background: var(--maroon-dark); color: var(--cream-raised); border-color: var(--maroon-dark); transform: translateY(-1px); box-shadow: var(--shadow-card-hover); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 .btn--ghost {
+  border-radius: var(--radius-md);
   background: transparent;
   color: var(--navy);
   border-color: var(--navy);
@@ -238,7 +241,7 @@ button.linklike:hover { color: var(--maroon); }
   border-color: var(--bad);
 }
 .btn--danger:hover { background: #7A2020; border-color: #7A2020; }
-.btn--small { padding: 6px 13px; font-size: 0.8rem; }
+.btn--small { padding: 6px 13px; font-size: 0.8rem; border-radius: var(--raduis-lg); }
 .btn-row { display: flex; gap: var(--space-2); align-items: center; }
 
 /* ---- Messages ---- */
@@ -273,7 +276,7 @@ button.linklike:hover { color: var(--maroon); }
   display: flex;
   flex-direction: column;
 }
-.course-card:hover { transform: translateY(-3px); border: 1px solid #5e5a54; box-shadow: var(--shadow-card-hover); }
+.course-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
 .course-card__head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
 .course-card__badge {
   flex-shrink: 0;
@@ -315,7 +318,7 @@ button.linklike:hover { color: var(--maroon); }
   letter-spacing: 0.04em;
   color: var(--good);
   background: var(--good-tint);
-  border-radius: 100px;
+  border-radius: var(--raduis-lg);
   padding: 4px 10px;
 }
 

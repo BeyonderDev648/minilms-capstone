@@ -45,7 +45,7 @@ export default function App() {
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-          <footer className="app-footer">&copy; MiniLMS — capstone project</footer>
+          <footer className="app-footer"><p>Your journey into technology starts with a simple lesson.</p><br/>&copy; MiniLMS — capstone project</footer>
         </div>
       </BrowserRouter>
     </AuthProvider>
