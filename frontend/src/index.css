@@ -6,8 +6,8 @@
   --ink-soft: #6B6256;
   --rule: #E6DCC8;
 
-  --maroon: #7C1F2D;
-  --maroon-dark: #5E1521;
+  --maroon: #7a2935;
+  --maroon-dark: #681926;
   --maroon-tint: #F6E6E5;
 
   --navy: #1B2A4A;
@@ -59,8 +59,7 @@ h1 { font-size: 1.85rem; }
 h2 {
   font-size: 1.25rem;
   display: inline-block;
-  padding-bottom: 8px;
-  border-bottom: 3px solid var(--maroon);
+  padding-bottom: 4px;
 }
 h3 { font-size: 1rem; font-weight: 600; font-family: var(--body); }
 
@@ -138,7 +137,7 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
 .nav-links { display: flex; gap: var(--space-3); align-items: center; }
 .nav-link {
   font-size: 0.88rem;
-  text-decoration: underline;
+  text-decoration: none;
   color: var(--ink-soft);
   font-weight: 600;
   display: inline-flex;
@@ -204,7 +203,7 @@ button.linklike:hover { color: var(--maroon); }
   font-weight: 600;
   cursor: pointer;
   color: var(--ink-soft);
-  transition: 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 .role-toggle input { width: auto; margin: 0; accent-color: var(--maroon); }
 .role-toggle input:checked + span { color: var(--maroon); }
@@ -226,7 +225,7 @@ button.linklike:hover { color: var(--maroon); }
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
-.btn:hover { background: var(--maroon-tint); border-color: var(--maroon-dark); transform: translateY(-1px); box-shadow: var(--shadow-card-hover); }
+.btn:hover { background: var(--maroon-dark); color: var(--cream-raised); border-color: var(--maroon-dark); transform: translateY(-1px); box-shadow: var(--shadow-card-hover); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 .btn--ghost {
   background: transparent;
@@ -274,7 +273,7 @@ button.linklike:hover { color: var(--maroon); }
   display: flex;
   flex-direction: column;
 }
-.course-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
+.course-card:hover { transform: translateY(-3px); border: 1px solid #5e5a54; box-shadow: var(--shadow-card-hover); }
 .course-card__head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
 .course-card__badge {
   flex-shrink: 0;
