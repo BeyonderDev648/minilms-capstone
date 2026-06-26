@@ -6,7 +6,7 @@
   --ink-soft: #6B6256;
   --rule: #E6DCC8;
 
-  --maroon: #7C1F2D;
+  --maroon: #7b1f41;
   --maroon-dark: #5E1521;
   --maroon-tint: #F6E6E5;
 
@@ -30,6 +30,7 @@
 
   --radius-sm: 6px;
   --radius-md: 10px;
+  --radius-lg: 100px;
   --shadow-card: 0 1px 2px rgba(28, 26, 24, 0.04);
   --shadow-card-hover: 0 10px 24px -8px rgba(28, 26, 24, 0.18);
 }
@@ -59,7 +60,8 @@ h1 { font-size: 1.85rem; }
 h2 {
   font-size: 1.25rem;
   display: inline-block;
-  padding-bottom: 8px;
+  color: var(--ink);
+  padding-bottom: 4px;
   border-bottom: 3px solid var(--maroon);
 }
 h3 { font-size: 1rem; font-weight: 600; font-family: var(--body); }
@@ -84,13 +86,14 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
   margin: 0 auto;
   padding: var(--space-4) var(--space-3);
 }
-.container--narrow { max-width: 440px; }
+.container--narrow { max-width: 460px; }
 
 /* ---- Top nav ---- */
 .topbar {
   background: var(--cream-raised);
   border-bottom: 3px solid var(--maroon);
   box-shadow: var(--shadow-card);
+  position: sticky;
 }
 .topbar__inner {
   max-width: 960px;
@@ -102,8 +105,8 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
 }
 .brand {
   font-family: var(--display);
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.85rem;
+  font-weight: 800;
   color: var(--ink);
   display: flex;
   align-items: center;
@@ -124,7 +127,7 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
 .role-pill {
   font-family: var(--body);
   font-size: 0.65rem;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   border-radius: 100px;
@@ -139,7 +142,7 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
 .nav-link {
   font-size: 0.88rem;
   color: var(--ink-soft);
-  font-weight: 600;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -225,20 +228,20 @@ button.linklike:hover { color: var(--maroon); }
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
-.btn:hover { background: var(--maroon-dark); border-color: var(--maroon-dark); transform: translateY(-1px); box-shadow: var(--shadow-card-hover); }
+.btn:hover { background: var(--maroon-dark); color: var(--maroon-tint); border-color: var(--maroon-dark); transform: translateY(-1px); box-shadow: var(--shadow-card-hover); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 .btn--ghost {
   background: transparent;
   color: var(--navy);
   border-color: var(--navy);
 }
-.btn--ghost:hover { background: var(--navy); color: var(--cream); border-color: var(--navy); }
+.btn--ghost:hover { background: var(--navy); color: var(--cream); border-color: var(--navy); text-decoration: none;}
 .btn--danger {
   background: var(--bad);
   border-color: var(--bad);
 }
 .btn--danger:hover { background: #7A2020; border-color: #7A2020; }
-.btn--small { padding: 6px 13px; font-size: 0.8rem; }
+.btn--small { padding: 6px 13px; font-size: 0.8rem; border-radius: var(--radius-lg); }
 .btn-row { display: flex; gap: var(--space-2); align-items: center; }
 
 /* ---- Messages ---- */
@@ -316,7 +319,7 @@ button.linklike:hover { color: var(--maroon); }
   letter-spacing: 0.04em;
   color: var(--good);
   background: var(--good-tint);
-  border-radius: 100px;
+  border-radius: var(--radius-lg);
   padding: 4px 10px;
 }
 .tag--pending { color: var(--navy); background: var(--navy-tint); }
