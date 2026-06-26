@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Upload } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import api from '../api/client';
 
 export default function CreateCourse() {
@@ -31,14 +31,14 @@ export default function CreateCourse() {
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label htmlFor="title">Title</label>
-          <input id="title" placeholder='Write a Title here' required value={title} onChange={(e) => setTitle(e.target.value)} />
+          <input id="title" required value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div className="field">
           <label htmlFor="description">Description</label>
-          <textarea id="description" placeholder='Write a Description here' value={description} onChange={(e) => setDescription(e.target.value)} />
+          <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
         <button className="btn" type="submit" disabled={loading}>
-          <Upload size={16} /> {loading ? 'Creating…' : 'Create course'}
+          <Plus size={16} /> {loading ? 'Creating…' : 'Create course'}
         </button>
       </form>
     </div>

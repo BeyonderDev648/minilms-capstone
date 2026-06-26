@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Check, Plus } from 'lucide-react';
+import { Check, Clock, X, Plus } from 'lucide-react';
 import api from '../api/client';
 
 export default function BrowseCourses() {
   const [courses, setCourses] = useState([]);
-  const [enrolledIds, setEnrolledIds] = useState([]);
+  const [statusByCourse, setStatusByCourse] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [enrollingId, setEnrollingId] = useState(null);
+  const [requestingId, setRequestingId] = useState(null);
 
   const load = () => {
     setLoading(true);
@@ -15,7 +15,7 @@ export default function BrowseCourses() {
       .get('/courses/browse')
       .then(({ data }) => {
         setCourses(data.courses);
-        setEnrolledIds(data.enrolledIds);
+        setStatusByCourse(data.statusByCourse || {});
       })
       .catch(() => setError('Could not load courses.'))
       .finally(() => setLoading(false));
@@ -26,22 +26,25 @@ export default function BrowseCourses() {
     load();
   }, []);
 
-  const handleEnroll = async (courseId) => {
-    setEnrollingId(courseId);
+  const handleRequest = async (courseId) => {
+    setRequestingId(courseId);
+    setError('');
     try {
       await api.post(`/courses/${courseId}/enroll`);
-      setEnrolledIds((prev) => [...prev, courseId]);
+      setStatusByCourse((prev) => ({ ...prev, [courseId]: 'pending' }));
     } catch (err) {
-      setError(err.response?.data?.error || 'Could not enroll.');
+      setError(err.response?.data?.error || 'Could not submit your request.');
     } finally {
-      setEnrollingId(null);
+      setRequestingId(null);
     }
   };
 
   return (
     <div className="container">
       <h2>Browse courses</h2>
-      <p style={{ color: 'var(--ink-soft)', marginTop: 10 }}>Every course currently offered, across all teachers.</p>
+      <p style={{ color: 'var(--ink-soft)', marginTop: 10 }}>
+        Every course currently offered. Enrolling sends a request - your teacher needs to approve it before you can see lesson content.
+      </p>
 
       {error && <div className="alert alert--error">{error}</div>}
       {loading && <p className="loading">Loading…</p>}
@@ -55,7 +58,7 @@ export default function BrowseCourses() {
       {!loading && courses.length > 0 && (
         <div className="catalog">
           {courses.map((course, i) => {
-            const isEnrolled = enrolledIds.includes(course.id);
+            const status = statusByCourse[course.id]; // undefined | 'pending' | 'approved' | 'rejected'
             return (
               <div className="course-card" key={course.id}>
                 <div className="course-card__head">
@@ -67,15 +70,16 @@ export default function BrowseCourses() {
                 </div>
                 {course.description && <p className="course-card__desc">{course.description}</p>}
                 <div className="course-card__foot">
-                  {isEnrolled ? (
-                    <span className="tag"><Check size={12} /> Enrolled</span>
-                  ) : (
+                  {status === 'approved' && <span className="tag"><Check size={12} /> Enrolled</span>}
+                  {status === 'pending' && <span className="tag tag--pending"><Clock size={12} /> Pending approval</span>}
+                  {status === 'rejected' && <span className="tag tag--rejected"><X size={12} /> Not approved</span>}
+                  {!status && (
                     <button
                       className="btn btn--small"
-                      onClick={() => handleEnroll(course.id)}
-                      disabled={enrollingId === course.id}
+                      onClick={() => handleRequest(course.id)}
+                      disabled={requestingId === course.id}
                     >
-                      <Plus size={14} /> {enrollingId === course.id ? 'Enrolling…' : 'Enroll'}
+                      <Plus size={14} /> {requestingId === course.id ? 'Requesting…' : 'Request to enroll'}
                     </button>
                   )}
                 </div>

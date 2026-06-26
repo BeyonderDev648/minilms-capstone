@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { Plus, BookOpen } from 'lucide-react';
+import { Plus, BookOpen, Clock, X } from 'lucide-react';
 import api from '../api/client';
 import { useAuth } from '../context/AuthContext';
 
@@ -34,7 +34,7 @@ export default function Dashboard() {
   return (
     <div className="container">
       <div className="section-head">
-        <h2>{user.role === 'teacher' ? 'Your courses' : 'Your enrolled courses'}</h2>
+        <h2>{user.role === 'teacher' ? 'Your courses' : 'Your courses'}</h2>
         {user.role === 'teacher' && (
           <Link to="/teacher/courses/new" className="btn btn--small"><Plus size={15} /> New course</Link>
         )}
@@ -46,7 +46,7 @@ export default function Dashboard() {
       {!loading && !error && courses.length === 0 && (
         <div className="empty-state">
           <div className="empty-state__icon"><BookOpen size={24} /></div>
-          <h3>{user.role === 'teacher' ? "You haven't created any courses yet." : "You're not enrolled in anything yet."}</h3>
+          <h3>{user.role === 'teacher' ? "You haven't created any courses yet." : "You haven't requested any courses yet."}</h3>
           {user.role === 'teacher' ? (
             <Link to="/teacher/courses/new" className="btn" style={{ marginTop: 'var(--space-2)' }}>Create your first course</Link>
           ) : (
@@ -57,23 +57,31 @@ export default function Dashboard() {
 
       {!loading && courses.length > 0 && (
         <div className="catalog">
-          {courses.map((course, i) => (
-            <div className="course-card" key={course.id}>
-              <div className="course-card__head">
-                <span className="course-card__badge">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="course-card__title">{course.title}</h3>
+          {courses.map((course, i) => {
+            // teacher courses have no enrollment_status field - always fully open
+            const status = user.role === 'student' ? course.enrollment_status : 'approved';
+            const detailPath = user.role === 'teacher' ? `/teacher/courses/${course.id}` : `/student/courses/${course.id}`;
+            return (
+              <div className="course-card" key={course.id}>
+                <div className="course-card__head">
+                  <span className="course-card__badge">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 className="course-card__title">{course.title}</h3>
+                </div>
+                {course.description && <p className="course-card__desc">{course.description}</p>}
+                <div className="course-card__foot">
+                  {status === 'approved' && (
+                    <Link className="btn btn--small btn--ghost" to={detailPath}>Open</Link>
+                  )}
+                  {status === 'pending' && (
+                    <span className="course-card__status-note"><Clock size={13} style={{ verticalAlign: -2 }} /> Awaiting teacher approval</span>
+                  )}
+                  {status === 'rejected' && (
+                    <span className="course-card__status-note"><X size={13} style={{ verticalAlign: -2 }} /> Request not approved</span>
+                  )}
+                </div>
               </div>
-              {course.description && <p className="course-card__desc">{course.description}</p>}
-              <div className="course-card__foot">
-                <Link
-                  className="btn btn--small btn--ghost"
-                  to={user.role === 'teacher' ? `/teacher/courses/${course.id}` : `/student/courses/${course.id}`}
-                >
-                  Open
-                </Link>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

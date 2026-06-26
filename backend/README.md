@@ -73,13 +73,29 @@ Authorization: Bearer <token>
 ### Courses
 | Method | Path | Role | Description |
 |---|---|---|---|
-| GET | `/api/courses/dashboard` | teacher/student | Teacher: their own courses. Student: courses they're enrolled in |
-| GET | `/api/courses/browse` | student | All courses + which ones the student is already enrolled in |
+| GET | `/api/courses/dashboard` | teacher/student | Teacher: their own courses. Student: every course they've requested, with its status (`pending`/`approved`/`rejected`) |
+| GET | `/api/courses/browse` | student | All courses + the student's own request status per course (absent = never requested) |
 | POST | `/api/courses` | teacher | `{ title, description? }` — create a course |
-| GET | `/api/courses/teacher/:id` | teacher (owner only) | Course + its lessons + enrolled students |
-| GET | `/api/courses/student/:id` | student (enrolled only) | Course + its lessons |
-| POST | `/api/courses/:id/enroll` | student | Enroll in a course |
+| GET | `/api/courses/teacher/:id` | teacher (owner only) | Course + its lessons + approved students + pending requests |
+| GET | `/api/courses/student/:id` | student (approved only) | Course + its lessons. Returns 403 if the request is still pending or was rejected |
+| POST | `/api/courses/:id/enroll` | student | Submits an enrollment **request** (status `pending`) — does not grant access by itself |
+| POST | `/api/courses/:id/requests/:enrollmentId/approve` | teacher (owner only) | Approves a pending request |
+| POST | `/api/courses/:id/requests/:enrollmentId/reject` | teacher (owner only) | Rejects a pending request — **final**, the student cannot re-request |
 | POST | `/api/courses/:id/lessons` | teacher (owner only) | `{ title, content? }` — add a lesson |
+
+**Enrollment approval workflow:** enrolling no longer grants instant access. A
+student's request starts as `pending`; the course's teacher must explicitly
+approve it before lesson content becomes visible. A rejection is permanent —
+there is intentionally no endpoint to re-request after rejection, and no
+endpoint to cancel/leave a course once a request exists (no "unenroll" route
+exists at all). This is a deliberate design decision matching the brief, not
+a missing feature.
+
+If you already have an existing live database from earlier testing, run
+`src/db/migration_001_enrollment_status.sql` against it once (Neon's SQL
+Editor, or `psql`) — it adds the `status` column and grandfathers any
+enrollments you already created in as `approved`, so nothing you already
+tested breaks.
 
 ### Admin
 | Method | Path | Role | Description |

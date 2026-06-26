@@ -32,14 +32,14 @@ export default function UploadLesson() {
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label htmlFor="title">Lesson title</label>
-          <input id="title" placeholder='Write a Title for the lesson here' required value={title} onChange={(e) => setTitle(e.target.value)} />
+          <input id="title" required value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div className="field">
           <label htmlFor="content">Content</label>
-          <textarea id="content" placeholder='Write a Description for the lesson here' rows={8} value={content} onChange={(e) => setContent(e.target.value)} />
+          <textarea id="content" rows={8} value={content} onChange={(e) => setContent(e.target.value)} />
         </div>
         <button className="btn" type="submit" disabled={loading}>
-          <Plus size={16} /> {loading ? 'Uploading…' : 'Add lesson'}
+          <Upload size={16} /> {loading ? 'Uploading…' : 'Upload lesson'}
         </button>
       </form>
     </div>

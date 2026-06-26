@@ -6,8 +6,8 @@
   --ink-soft: #6B6256;
   --rule: #E6DCC8;
 
-  --maroon: #7b1f41;
-  --maroon-dark: #681926;
+  --maroon: #7C1F2D;
+  --maroon-dark: #5E1521;
   --maroon-tint: #F6E6E5;
 
   --navy: #1B2A4A;
@@ -30,7 +30,6 @@
 
   --radius-sm: 6px;
   --radius-md: 10px;
-  --raduis-lg: 100px;
   --shadow-card: 0 1px 2px rgba(28, 26, 24, 0.04);
   --shadow-card-hover: 0 10px 24px -8px rgba(28, 26, 24, 0.18);
 }
@@ -60,15 +59,15 @@ h1 { font-size: 1.85rem; }
 h2 {
   font-size: 1.25rem;
   display: inline-block;
-  padding-bottom: 2px;
-  color: var(--ink);
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--maroon);
 }
 h3 { font-size: 1rem; font-weight: 600; font-family: var(--body); }
 
 p { margin: 0 0 var(--space-2) 0; }
 
 a { color: var(--navy); text-decoration: none; font-weight: 500; }
-a:hover { color: var(--maroon); text-decoration: none; }
+a:hover { color: var(--maroon); text-decoration: underline; }
 
 button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; }
 
@@ -85,14 +84,13 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
   margin: 0 auto;
   padding: var(--space-4) var(--space-3);
 }
-.container--narrow { max-width: 460px; }
+.container--narrow { max-width: 440px; }
 
 /* ---- Top nav ---- */
 .topbar {
   background: var(--cream-raised);
   border-bottom: 3px solid var(--maroon);
   box-shadow: var(--shadow-card);
-  position: sticky;
 }
 .topbar__inner {
   max-width: 960px;
@@ -104,8 +102,8 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
 }
 .brand {
   font-family: var(--display);
-  font-size: 1.85rem;
-  font-weight: 800;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: var(--ink);
   display: flex;
   align-items: center;
@@ -140,14 +138,13 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
 .nav-links { display: flex; gap: var(--space-3); align-items: center; }
 .nav-link {
   font-size: 0.88rem;
-  text-decoration: none;
   color: var(--ink-soft);
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 5px;
 }
-.nav-link:hover { color: var(--maroon);  text-decoration: underline;}
+.nav-link:hover { color: var(--maroon); }
 button.linklike {
   background: none;
   border: none;
@@ -206,7 +203,7 @@ button.linklike:hover { color: var(--maroon); }
   font-weight: 600;
   cursor: pointer;
   color: var(--ink-soft);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 .role-toggle input { width: auto; margin: 0; accent-color: var(--maroon); }
 .role-toggle input:checked + span { color: var(--maroon); }
@@ -228,10 +225,9 @@ button.linklike:hover { color: var(--maroon); }
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
-.btn:hover { background: var(--maroon-dark); color: var(--cream-raised); border-color: var(--maroon-dark); transform: translateY(-1px); box-shadow: var(--shadow-card-hover); }
+.btn:hover { background: var(--maroon-dark); border-color: var(--maroon-dark); transform: translateY(-1px); box-shadow: var(--shadow-card-hover); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 .btn--ghost {
-  border-radius: var(--radius-sm);
   background: transparent;
   color: var(--navy);
   border-color: var(--navy);
@@ -242,7 +238,7 @@ button.linklike:hover { color: var(--maroon); }
   border-color: var(--bad);
 }
 .btn--danger:hover { background: #7A2020; border-color: #7A2020; }
-.btn--small { padding: 6px 13px; font-size: 0.8rem; border-radius: var(--raduis-lg); }
+.btn--small { padding: 6px 13px; font-size: 0.8rem; }
 .btn-row { display: flex; gap: var(--space-2); align-items: center; }
 
 /* ---- Messages ---- */
@@ -308,6 +304,7 @@ button.linklike:hover { color: var(--maroon); }
 }
 .course-card__desc { font-size: 0.88rem; color: var(--ink-soft); margin: 0 0 var(--space-2) 0; flex: 1; }
 .course-card__foot { display: flex; justify-content: flex-end; align-items: center; margin-top: auto; }
+.course-card__status-note { font-size: 0.78rem; color: var(--ink-soft); font-weight: 500; }
 
 .tag {
   display: inline-flex;
@@ -319,9 +316,11 @@ button.linklike:hover { color: var(--maroon); }
   letter-spacing: 0.04em;
   color: var(--good);
   background: var(--good-tint);
-  border-radius: var(--raduis-lg);
+  border-radius: 100px;
   padding: 4px 10px;
 }
+.tag--pending { color: var(--navy); background: var(--navy-tint); }
+.tag--rejected { color: var(--ink-soft); background: var(--rule); }
 
 /* ---- Cards / sections ---- */
 .card {

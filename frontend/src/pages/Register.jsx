@@ -37,18 +37,17 @@ export default function Register() {
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label htmlFor="name">Full name</label>
-          <input id="name" placeholder='Enter your Full Name' required value={name} onChange={(e) => setName(e.target.value)} />
+          <input id="name" required value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="field">
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" placeholder='Enter your Email' required value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="field">
           <label htmlFor="password">Password</label>
           <input
             id="password"
             type="password"
-            placeholder='Enter your Password'
             required
             minLength={6}
             value={password}
@@ -80,7 +79,7 @@ export default function Register() {
         </div>
 
         <button className="btn" type="submit" disabled={loading} style={{ width: '100%' }}>
-          <UserPlus size={16} /> {loading ? 'Creating an account…' : 'Create account'}
+          <UserPlus size={16} /> {loading ? 'Creating account…' : 'Create account'}
         </button>
       </form>
 
