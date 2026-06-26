@@ -61,7 +61,6 @@ h2 {
   font-size: 1.25rem;
   display: inline-block;
   color: var(--ink);
-  padding-bottom: 4px;
 }
 h3 { font-size: 1rem; font-weight: 600; font-family: var(--body); }
 
@@ -92,6 +91,7 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
   background: var(--cream-raised);
   border-bottom: 3px solid var(--maroon);
   box-shadow: var(--shadow-card);
+  top: 0px;
   position: sticky;
 }
 .topbar__inner {
@@ -106,12 +106,12 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
   font-family: var(--display);
   font-size: 1.85rem;
   font-weight: 800;
-  color: var(--ink);
+  color: var(--navy-dark);
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.brand:hover { color: var(--ink); text-decoration: none; }
+.brand:hover { color: var(--navy); text-decoration: none; }
 .brand-mark {
   width: 30px;
   height: 30px;
@@ -231,7 +231,7 @@ button.linklike:hover { color: var(--maroon); }
 .btn:hover { background: var(--maroon-dark); color: var(--maroon-tint); border-color: var(--maroon-dark); transform: translateY(-1px); box-shadow: var(--shadow-card-hover); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 .btn--ghost {
-  border-radius: var(--radius-sm);
+  border-radius: 6px;
   background: transparent;
   color: var(--navy);
   border-color: var(--navy);

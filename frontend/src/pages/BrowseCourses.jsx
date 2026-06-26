@@ -65,7 +65,7 @@ export default function BrowseCourses() {
                   <span className="course-card__badge">{String(i + 1).padStart(2, '0')}</span>
                   <div>
                     <h3 className="course-card__title">{course.title}</h3>
-                    <p className="course-card__meta">{course.teacher_name}</p>
+                    <p className="course-card__meta">Taught by {course.teacher_name}</p>
                   </div>
                 </div>
                 {course.description && <p className="course-card__desc">{course.description}</p>}
