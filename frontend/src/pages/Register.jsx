@@ -41,7 +41,7 @@ export default function Register() {
         </div>
         <div className="field">
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" placeholder='Enter you Email' required value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input id="email" type="email" placeholder='Enter your Email' required value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="field">
           <label htmlFor="password">Password</label>

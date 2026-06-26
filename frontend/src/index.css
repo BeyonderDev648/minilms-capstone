@@ -62,14 +62,13 @@ h2 {
   display: inline-block;
   color: var(--ink);
   padding-bottom: 4px;
-  border-bottom: 3px solid var(--maroon);
 }
 h3 { font-size: 1rem; font-weight: 600; font-family: var(--body); }
 
 p { margin: 0 0 var(--space-2) 0; }
 
 a { color: var(--navy); text-decoration: none; font-weight: 500; }
-a:hover { color: var(--maroon); text-decoration: underline; }
+a:hover { color: var(--maroon); text-decoration: none; }
 
 button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; }
 
@@ -140,14 +139,15 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
 
 .nav-links { display: flex; gap: var(--space-3); align-items: center; }
 .nav-link {
+  text-decoration: none;
   font-size: 0.88rem;
   color: var(--ink-soft);
-  font-weight: 700;
+  font-weight: 650;
   display: inline-flex;
   align-items: center;
   gap: 5px;
 }
-.nav-link:hover { color: var(--maroon); }
+.nav-link:hover { color: var(--maroon); text-decoration: underline; }
 button.linklike {
   background: none;
   border: none;
@@ -157,7 +157,7 @@ button.linklike {
   align-items: center;
   gap: 5px;
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 650;
   color: var(--ink-soft);
 }
 button.linklike:hover { color: var(--maroon); }
@@ -231,6 +231,7 @@ button.linklike:hover { color: var(--maroon); }
 .btn:hover { background: var(--maroon-dark); color: var(--maroon-tint); border-color: var(--maroon-dark); transform: translateY(-1px); box-shadow: var(--shadow-card-hover); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 .btn--ghost {
+  border-radius: var(--radius-sm);
   background: transparent;
   color: var(--navy);
   border-color: var(--navy);
@@ -241,7 +242,7 @@ button.linklike:hover { color: var(--maroon); }
   border-color: var(--bad);
 }
 .btn--danger:hover { background: #7A2020; border-color: #7A2020; }
-.btn--small { padding: 6px 13px; font-size: 0.8rem; border-radius: var(--radius-lg); }
+.btn--small { padding: 6px 13px; font-size: 0.8rem; border-radius: var(--radius-lg); text-decoration: none; }
 .btn-row { display: flex; gap: var(--space-2); align-items: center; }
 
 /* ---- Messages ---- */
