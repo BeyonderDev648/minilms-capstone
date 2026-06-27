@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Plus, Check, X } from 'lucide-react';
 import api from '../api/client';
+import LessonAttachment from '../components/LessonAttachment';
 
 export default function TeacherCourseDetail() {
   const { id } = useParams();
@@ -98,9 +99,10 @@ export default function TeacherCourseDetail() {
           {lessons.map((lesson, i) => (
             <div key={lesson.id} className="lesson-card" style={{ marginBottom: i < lessons.length - 1 ? 'var(--space-3)' : 0 }}>
               <span className="lesson-card__badge">{i + 1}</span>
-              <div>
+              <div className="lesson-card__body">
                 <h3 style={{ marginBottom: 4 }}>{lesson.title}</h3>
                 {lesson.content && <p style={{ color: 'var(--ink-soft)', margin: 0 }}>{lesson.content}</p>}
+                <LessonAttachment url={lesson.attachment_url} />
               </div>
             </div>
           ))}

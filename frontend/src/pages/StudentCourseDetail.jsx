@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { BookOpen } from 'lucide-react';
 import api from '../api/client';
+import LessonAttachment from '../components/LessonAttachment';
 
 export default function StudentCourseDetail() {
   const { id } = useParams();
@@ -38,9 +39,10 @@ export default function StudentCourseDetail() {
         lessons.map((lesson, i) => (
           <div className="card lesson-card" key={lesson.id}>
             <span className="lesson-card__badge">{i + 1}</span>
-            <div>
+            <div className="lesson-card__body">
               <h3 style={{ marginBottom: 6 }}>{lesson.title}</h3>
               {lesson.content && <p style={{ margin: 0 }}>{lesson.content}</p>}
+              <LessonAttachment url={lesson.attachment_url} />
             </div>
           </div>
         ))

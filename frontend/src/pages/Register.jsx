@@ -30,25 +30,24 @@ export default function Register() {
   return (
     <div className="container container--narrow">
       <h1>Create your account</h1>
-      <p style={{ color: 'var(--ink-soft)' }}>Welcome to MiniLMS. Create an account to get started.</p>
+      <p style={{ color: 'var(--ink-soft)' }}>Admin accounts aren't self-registered — see your administrator.</p>
 
       {error && <div className="alert alert--error">{error}</div>}
 
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label htmlFor="name">Full name</label>
-          <input id="name" placeholder='Enter your Full Name' required value={name} onChange={(e) => setName(e.target.value)} />
+          <input id="name" required value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="field">
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" placeholder='Enter your Email' required value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="field">
           <label htmlFor="password">Password</label>
           <input
             id="password"
             type="password"
-            placeholder='Enter Password'
             required
             minLength={6}
             value={password}

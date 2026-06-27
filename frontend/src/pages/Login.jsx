@@ -27,7 +27,7 @@ export default function Login() {
 
   return (
     <div className="container container--narrow">
-      <h1>Welcome back!</h1>
+      <h1>Welcome back</h1>
       <p style={{ color: 'var(--ink-soft)' }}>Log in to continue to your courses.</p>
 
       {error && <div className="alert alert--error">{error}</div>}
@@ -35,11 +35,11 @@ export default function Login() {
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" placeholder='Enter your Email' required value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="field">
           <label htmlFor="password">Password</label>
-          <input id="password" type="password" placeholder='Enter Password' required value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <button className="btn" type="submit" disabled={loading} style={{ width: '100%' }}>
           <LogIn size={16} /> {loading ? 'Logging in…' : 'Log in'}
