@@ -34,11 +34,11 @@ export default function UploadLesson() {
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label htmlFor="title">Lesson title</label>
-          <input id="title" required value={title} onChange={(e) => setTitle(e.target.value)} />
+          <input id="title" placeholder='Write Lesson Title' required value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div className="field">
           <label htmlFor="content">Content</label>
-          <textarea id="content" rows={8} value={content} onChange={(e) => setContent(e.target.value)} />
+          <textarea id="content" placeholder='Write Lesson Content' rows={8} value={content} onChange={(e) => setContent(e.target.value)} />
         </div>
         <div className="field">
           <label htmlFor="attachment">Video, image, or file link (optional)</label>

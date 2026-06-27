@@ -106,7 +106,6 @@ button, input, select, textarea { font-family: var(--body); font-size: 0.95rem; 
   font-family: var(--display);
   font-size: 1.85rem;
   font-weight: 800;
-  color: var(--ink);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -276,7 +275,7 @@ button.linklike:hover { color: var(--maroon); }
   display: flex;
   flex-direction: column;
 }
-.course-card:hover { border: 1px solid var(--ink); box-shadow: var(--shadow-card-hover); }
+.course-card:hover { box-shadow: var(--shadow-card-hover); }
 .course-card__head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
 .course-card__badge {
   flex-shrink: 0;
