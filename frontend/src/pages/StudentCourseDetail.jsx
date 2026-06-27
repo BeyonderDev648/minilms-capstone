@@ -37,8 +37,13 @@ export default function StudentCourseDetail() {
         </div>
       ) : (
         lessons.map((lesson, i) => (
-          <div className="card lesson-card">
+          <div className="card lesson-card" key={lesson.id}>
             <span className="lesson-card__badge">{i + 1}</span>
+            <div className="lesson-card__body">
+              <h3 style={{ marginBottom: 6 }}>{lesson.title}</h3>
+              {lesson.content && <p style={{ margin: 0 }}>{lesson.content}</p>}
+              <LessonAttachment url={lesson.attachment_url} />
+            </div>
           </div>
         ))
       )}
