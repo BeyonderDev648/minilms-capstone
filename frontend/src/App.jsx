@@ -32,6 +32,7 @@ export default function App() {
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
 
             {/* student-only */}
+            <Route path="/carear" element={<RoleRoute role="student"><Carear></Carear></RoleRoute>} />
             <Route path="/courses" element={<RoleRoute role="student"><BrowseCourses /></RoleRoute>} />
             <Route path="/student/courses/:id" element={<RoleRoute role="student"><StudentCourseDetail /></RoleRoute>} />
 
