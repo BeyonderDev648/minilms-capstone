@@ -37,7 +37,7 @@ export default function StudentCourseDetail() {
         </div>
       ) : (
         lessons.map((lesson, i) => (
-          <div className="card lesson-card" key={lesson.id}>
+          <div className="card lesson-card">
             <span className="lesson-card__badge">{i + 1}</span>
           </div>
         ))

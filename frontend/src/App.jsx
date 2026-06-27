@@ -32,6 +32,8 @@ export default function App() {
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
 
             {/* student-only */}
+            <Route path="/courses" element={<RoleRoute role="student"><BrowseCourses /></RoleRoute>} />
+            <Route path="/student/courses/:id" element={<RoleRoute role="student"><StudentCourseDetail /></RoleRoute>} />
 
             {/* teacher-only */}
             <Route path="/teacher/courses/new" element={<RoleRoute role="teacher"><CreateCourse /></RoleRoute>} />
